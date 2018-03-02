@@ -29,7 +29,13 @@ function createWindow() {
   let indexPath = isDev ? path.join(`brave/${__dirname}`, 'app/public/index.html') : path.join(`brave/${__dirname}`, 'index.html');
 
   setTimeout(() => {
-    win.loadURL(`file://${__dirname}/app/public/index.html`);
+    win.loadURL(
+      require('url').format({
+        protocol: 'chrome',
+        slashes: true,
+        pathname: indexPath,
+      })
+    )
     var template = [{
       label: "Edit",
         submenu: [
