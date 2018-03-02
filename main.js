@@ -26,15 +26,10 @@ function createWindow() {
 
   extensions.loadMetamask(session, win, isDev);
 
-  let indexPath;
-  isDev ? indexPath = path.join(`brave/${__dirname}`, 'your-app/index.html') : indexPath = path.join(`brave/${__dirname}`, 'index.html');
+  let indexPath = isDev ? path.join(`brave/${__dirname}`, 'app/public/index.html') : path.join(`brave/${__dirname}`, 'index.html');
 
   setTimeout(() => {
-    win.loadURL(url.format({
-      pathname: indexPath,
-      protocol: 'chrome',
-      slashes: true
-    }));
+    win.loadURL(`file://${__dirname}/app/public/index.html`);
     var template = [{
       label: "Edit",
         submenu: [
