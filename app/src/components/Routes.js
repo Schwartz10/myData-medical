@@ -3,6 +3,7 @@ import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
 import DragAndDrop from './DragAndDrop';
 import ToggleMetaMask from './ToggleMetaMask';
+import EncryptAndDecrypt from './EncryptAndDecrypt';
 
 const Routes = () =>
   <Router history={history}>
@@ -14,6 +15,7 @@ const Routes = () =>
           <Route path='/' component={DragAndDrop} />
         </Switch>
         <ToggleMetaMask />
+        <EncryptAndDecrypt />
       </div>
   </Router>
 
