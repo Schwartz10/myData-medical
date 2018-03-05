@@ -3,7 +3,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs');
 
-const extensions = require('./extensions');
+const extensions = require('./main-processes/extensions');
 
 let isDev;
 try {

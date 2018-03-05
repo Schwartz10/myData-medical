@@ -23,6 +23,7 @@ module.exports = {
           presets: ['react', 'env', 'stage-2'] // if you aren't using 'babel-preset-env', then omit the 'env'
         }
       },
+      { test: /\.node$/, loader: 'node-loader' },
       {
         test: /\.css$/, // use the style-loader/css-loader combos for anything matching the .css extension
         use: [

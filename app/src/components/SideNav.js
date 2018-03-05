@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Nav, NavIcon, NavText, withRR4 } from 'react-sidenav';
+// import { Link } from 'react-router-dom';
 import SvgIcon from 'react-icons-kit';
 
 import { key } from 'react-icons-kit/icomoon/key';
@@ -15,7 +16,7 @@ const MySideNav = () => (
                 <NavIcon><SvgIcon size={20} icon={key}/></NavIcon>
                 <NavText> Setup </NavText>
             </Nav>
-            <Nav id=''>
+            <Nav id='ooga'>
                 <NavIcon><SvgIcon size={20} icon={ic_business}/></NavIcon>
                 <NavText> Home </NavText>
             </Nav>
