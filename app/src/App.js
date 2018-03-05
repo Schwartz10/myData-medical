@@ -18,7 +18,8 @@ class App extends Component {
     this.collectBlockchainInfo()
   }
 
-  async collectBlockchainInfo() {
+  async collectBlockchainInfo(e) {
+    if (e) e.preventDefault()
     // Get network provider, web3, and truffle contract instance and store them on state.
     return Promise.all([await this.props.getWeb3(),
      this.props.getContract(this.props.web3),
@@ -29,7 +30,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <Routes />
+        <button onClick={this.collectBlockchainInfo.bind(this)}>Refresh Metamask</button>
+        <Routes />
       </div>
     );
   }
