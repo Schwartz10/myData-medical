@@ -1,8 +1,4 @@
 import React from 'react'
-// function isElectron() {
-//   if(chrome.ipcRenderer) return true;
-//   return false;
-// }
 
 function sendToElectron(message) {
   chrome.ipcRenderer.send(message);

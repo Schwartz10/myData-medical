@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dropzone from 'react-dropzone'
+import EncryptAndDecrypt from './EncryptAndDecrypt'
 
 class DragAndDrop extends Component {
   constructor() {
@@ -34,6 +35,7 @@ class DragAndDrop extends Component {
             }
           </ul>
         </aside>
+        <EncryptAndDecrypt />
       </section>
     );
   }

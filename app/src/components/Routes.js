@@ -2,8 +2,8 @@ import React from 'react'
 import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
 import DragAndDrop from './DragAndDrop';
-import ToggleMetaMask from './ToggleMetaMask';
-import EncryptAndDecrypt from './EncryptAndDecrypt';
+import SideNav from './SideNav';
+import Setup from './Setup';
 
 const Routes = () =>
   <Router history={history}>
@@ -11,11 +11,13 @@ const Routes = () =>
         <span>
           <h1 id="main-header">Backup your shit!</h1>
         </span>
-        <Switch>
-          <Route path='/' component={DragAndDrop} />
-        </Switch>
-        <ToggleMetaMask />
-        <EncryptAndDecrypt />
+        <div id='main-container'>
+          <SideNav />
+          <Switch>
+            <Route path='/setup' component={Setup} />
+            <Route path='/' component={DragAndDrop} />
+          </Switch>
+        </div>
       </div>
   </Router>
 

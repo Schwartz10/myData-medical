@@ -34,3 +34,8 @@ code {
 .pure-form input[type="text"]:focus {
   border-color: #0c1a2b;
 }
+
+#main-container {
+  display: flex;
+  flex-direction: row
+}

@@ -35,7 +35,7 @@ class EncryptAndDecrypt extends Component {
     // turns privateKey into a buffer so the walletjs-eth module can get the public key
     privateKey = new Buffer(privateKey, 'hex')
     const wallet = Wallet.fromPrivateKey(privateKey)
-    //removes the 0x from key and prepends 04 for public key encryption
+    //removes the 0x from key for public key encryption
     let publicKey = wallet.getPublicKeyString().slice(2)
     this.setState({ publicKey })
   }
