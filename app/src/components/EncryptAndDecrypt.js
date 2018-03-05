@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import EthCrypto from 'eth-crypto';
 import Wallet from 'ethereumjs-wallet'
 
-
 class EncryptAndDecrypt extends Component {
   constructor() {
     super()
@@ -16,7 +15,7 @@ class EncryptAndDecrypt extends Component {
 
   decrypt(e) {
     e.preventDefault()
-    const privateKey = '8998113b848249101259e816338a001ebabced2aa28604f3a4f0974b4569c4e4'
+    const privateKey = ''
   }
 
   async encrypt(e) {
@@ -28,11 +27,12 @@ class EncryptAndDecrypt extends Component {
 
   getKey(e) {
     e.preventDefault()
-    let privateKey = '8998113b848249101259e816338a001ebabced2aa28604f3a4f0974b4569c4e4'
+    let privateKey = ''
+    // turns privateKey into a buffer so the walletjs-eth module can get the public key
     privateKey = new Buffer(privateKey, 'hex')
     const wallet = Wallet.fromPrivateKey(privateKey)
     //removes the 0x from key and prepends 04 for public key encryption
-    let publicKey = '04' + wallet.getPublicKeyString().slice(2)
+    let publicKey = wallet.getPublicKeyString().slice(2)
     this.setState({ publicKey })
   }
 
