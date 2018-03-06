@@ -17,20 +17,23 @@ class BottomNav extends Component {
       <div id="bottom-nav">
         <Nav bsStyle="pills" activeKey={this.state.selectedKey} onSelect={this.handleSelect.bind(this)}>
           <LinkContainer to="/setup" >
-            <NavItem eventKey="1" title="Configure">
-              <Glyphicon glyph="cog"/>
+            <NavItem eventKey="1" title="Configure" className="bottom-nav-item">
+              <Glyphicon glyph="cog" className="bottom-nav-icon"/>
+              Setup
             </NavItem>
           </LinkContainer>
 
           <LinkContainer to="/store" >
-            <NavItem eventKey="2" title="Store">
-              <Glyphicon glyph="upload"/>
+            <NavItem eventKey="2" title="Store" className="bottom-nav-item">
+              <Glyphicon glyph="upload" className="bottom-nav-icon"/>
+              Backup
             </NavItem>
           </LinkContainer>
 
           <LinkContainer to="/about" >
-            <NavItem eventKey="3" title="About">
-              <Glyphicon glyph="info-sign"/>
+            <NavItem eventKey="3" title="About" className="bottom-nav-item">
+              <Glyphicon glyph="info-sign" className="bottom-nav-icon"/>
+              About
             </NavItem>
           </LinkContainer>
         </Nav>

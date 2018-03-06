@@ -1,9 +1,18 @@
 #bottom-nav {
   position:fixed;
   bottom:0;
-  width: 100vw;
   display: flex;
   direction: row;
-  justify-content: space-between;
-  min-height: 80px
+  justify-content: center;
+}
+
+.bottom-nav-item {
+  width: 33vw;
+  justify-content: center;
+}
+
+.bottom-nav-icon {
+  font-size: 20px;
+  padding-right: 1em;
+  padding-left: 2em;
 }
