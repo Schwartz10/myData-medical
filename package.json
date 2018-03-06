@@ -1,6 +1,6 @@
 {
-  "name": "electron-metamask-boilerplate",
-  "productName": "Electron Metamask Boilerplate",
+  "name": "project-backup",
+  "productName": "project-backup",
   "version": "0.0.1",
   "description": "Easily create a desktop version of your dApp using Electron (Muon) + MetaMask.",
   "main": "main.js",

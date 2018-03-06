@@ -4,6 +4,7 @@ import history from '../history';
 import DragAndDrop from './DragAndDrop';
 import SideNav from './SideNav';
 import Setup from './Setup';
+import SimpleStorage from './SimpleStorage'
 
 const Routes = () =>
   <Router history={history}>
@@ -17,6 +18,7 @@ const Routes = () =>
             <Route path='/setup' component={Setup} />
             <Route path='/' component={DragAndDrop} />
           </Switch>
+          <SimpleStorage />
         </div>
       </div>
   </Router>

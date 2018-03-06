@@ -26,6 +26,7 @@ const ToggleMetaMask = () => (
   <div>
     <button onClick={(e) => openMetamaskPopup(e)}>Open MetaMask</button>
     <button onClick={(e) => closeMetamaskNotification(e)}>Close MetaMask</button>
+    <button onClick={(e) => openMetamaskNotification(e)}>MetaMaskNotification</button>
   </div>
 )
 

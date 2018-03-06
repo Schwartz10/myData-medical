@@ -20,8 +20,8 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1920,
-    height: 1080
+    width: 400,
+    height: 800
   });
 
   extensions.loadMetamask(session, win, isDev);

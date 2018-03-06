@@ -36,6 +36,12 @@ class SimpleStorage extends Component {
       <div>
         <h1>The number stored in your smart contract is: <br /> {this.state.value} </h1>
         <button onClick={this.addOne.bind(this)}>Add One</button>
+        <button onClick=
+        {(e) => {
+          this.props.contract.get.call(this.props.accounts[0])
+          .then((result) => console.log(result.c[0]))
+        }}>
+        </button>
       </div>
     )
   }
