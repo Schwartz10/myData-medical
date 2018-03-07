@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { checkAccountConfig } from '../../store/configuredAccount'
 import './style.css'
 
 class SendEmail extends Component {
   render(){
+    let { configuredAccount } = this.props
     return(
       <div>
-        <Button bsStyle="primary">Send</Button>
+        <Button
+          disabled={!configuredAccount}
+          bsStyle="primary">Send
+        </Button>
       </div>
     )
   }
@@ -19,8 +24,17 @@ class SendEmail extends Component {
 const mapState = (state) => {
   return {
     contract: state.contract,
-    accounts: state.accounts
+    accounts: state.accounts,
+    configuredAccount: state.configuredAccount
   }
 }
 
-export default connect(mapState)(SendEmail)
+function mapDispatchToProps(dispatch){
+  return {
+    checkConfig: function (address){
+      return dispatch(checkAccountConfig(address))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatchToProps)(SendEmail)

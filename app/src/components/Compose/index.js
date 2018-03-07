@@ -28,7 +28,7 @@ class Compose extends Component {
   }
 
   render() {
-    const { editorState, to, subject, hasAccount } = this.state
+    const { editorState, to, subject } = this.state
     return (
       <div>
 
@@ -57,7 +57,7 @@ class Compose extends Component {
           editorClassName="editorClassName"
           onEditorStateChange={this.onEditorStateChange}
         />
-        <SendEmail active={this.props.configuredAccount}/>
+        <SendEmail />
 
       </div>
     );
@@ -71,7 +71,6 @@ const mapState = (state) => {
   return {
     contract: state.contract,
     accounts: state.accounts,
-    configuredAccount: state.configuredAccount
   }
 }
 
