@@ -50,8 +50,6 @@ function createWindow() {
   }, 200);
 
   win.webContents.openDevTools();
-  if(isDev) {
-  }
 
   ipcMain.on('open-link', (evt, link) => {
     shell.openExternal(link);
