@@ -4,6 +4,7 @@ const url = require('url');
 const fs = require('fs');
 
 const extensions = require('./main-processes/extensions');
+const authenticationListeners = require('./main-processes/authentication')
 
 let isDev;
 try {

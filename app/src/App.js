@@ -4,6 +4,7 @@ import { fetchWeb3 } from './store/web3'
 import { fetchContract } from './store/contract'
 import { fetchAccounts } from './store/accounts';
 import Routes from './components/Routes'
+import configuredAccount from './ipcRendererEvents'
 
 import './css/pure-min.css'
 import './App.css'
@@ -11,19 +12,23 @@ import './App.css'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.collectBlockchainInfo = this.collectBlockchainInfo.bind(this)
+    this.collectBlockchainAndUserInfo = this.collectBlockchainAndUserInfo.bind(this)
   }
 
   componentWillMount() {
-    this.collectBlockchainInfo()
+    this.collectBlockchainAndUserInfo();
   }
 
-  async collectBlockchainInfo(e) {
+  async collectBlockchainAndUserInfo(e) {
     if (e) e.preventDefault()
     // Get network provider, web3, and truffle contract instance and store them on state.
-    return Promise.all([await this.props.getWeb3(),
-     this.props.getContract(this.props.web3),
-     this.props.getAccounts(this.props.web3)])
+    const { web3 } = await this.props.getWeb3()
+    this.props.getContract(web3)
+    const { accounts } = await this.props.getAccounts(web3)
+    // checks with the main process to make sure the current addressed logged in to metamask has an identity set up
+    configuredAccount(accounts[0]);
+    // listens for an answer from the main process
+    chrome.ipcRenderer.on('checked-account-configuration', (event, hasAccount) => (console.log(hasAccount)))
   }
 
 
@@ -31,7 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <Routes />
-        <button id="refresh-metamask" onClick={this.collectBlockchainInfo.bind(this)}>Refresh Metamask</button>
+        <button id="refresh" onClick={this.collectBlockchainAndUserInfo.bind(this)}>Refresh Metamask</button>
       </div>
     );
   }

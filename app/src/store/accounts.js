@@ -16,10 +16,13 @@ const setAccounts = accounts => ({type: GET_ACCOUNTS, accounts})
 /**
  * THUNK CREATORS
  */
-export const fetchAccounts = web3  => {
-    return dispatch =>
-      web3.eth.getAccounts((err, accounts) => dispatch(setAccounts(accounts)))
-}
+export const fetchAccounts = web3  =>
+    dispatch =>
+      new Promise((resolve, reject) =>
+        web3.eth.getAccounts((err, accounts) => {
+          if (err) reject(err)
+          return resolve(dispatch(setAccounts(accounts)))
+        }))
 
 /**
  * REDUCER

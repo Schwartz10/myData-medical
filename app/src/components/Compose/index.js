@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import EncryptAndDecrypt from '../EncryptAndDecrypt'
+import { SendEmail } from '../'
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState } from 'draft-js';
 import { FormControl, InputGroup } from 'react-bootstrap'
@@ -13,7 +13,7 @@ class Compose extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       to: "",
-      subject: ""
+      subject: "",
     }
   }
   onEditorStateChange = (editorState) => {
@@ -28,7 +28,7 @@ class Compose extends Component {
   }
 
   render() {
-    const { editorState, to, subject } = this.state
+    const { editorState, to, subject, hasAccount } = this.state
     return (
       <div>
 
@@ -57,7 +57,8 @@ class Compose extends Component {
           editorClassName="editorClassName"
           onEditorStateChange={this.onEditorStateChange}
         />
-        <EncryptAndDecrypt />
+        <SendEmail active={this.props.configuredAccount}/>
+
       </div>
     );
   }
@@ -69,7 +70,8 @@ class Compose extends Component {
 const mapState = (state) => {
   return {
     contract: state.contract,
-    accounts: state.accounts
+    accounts: state.accounts,
+    configuredAccount: state.configuredAccount
   }
 }
 
