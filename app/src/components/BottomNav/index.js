@@ -11,7 +11,6 @@ class BottomNav extends Component {
   handleSelect(selectedKey){
     this.setState({ selectedKey })
   }
-
   render(){
     return(
       <div id="bottom-nav">
