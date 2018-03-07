@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchWeb3 } from './store/web3'
 import { fetchContract } from './store/contract'
 import { fetchAccounts } from './store/accounts';
+import { checkAccountConfig } from './store/configuredAccount'
 import Routes from './components/Routes'
 import configuredAccount from './ipcRendererEvents'
 
@@ -26,9 +27,12 @@ class App extends Component {
     this.props.getContract(web3)
     const { accounts } = await this.props.getAccounts(web3)
     // checks with the main process to make sure the current addressed logged in to metamask has an identity set up
-    configuredAccount(accounts[0]);
+    // if no address, send a 0
+    configuredAccount(accounts[0] || '0');
     // listens for an answer from the main process
-    chrome.ipcRenderer.on('checked-account-configuration', (event, hasAccount) => (console.log(hasAccount)))
+    chrome.ipcRenderer.on('checked-account-configuration',
+      // returns the address if account is configured, otherwise false
+      (event, configured) => this.props.checkConfig(configured))
   }
 
 
@@ -36,7 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         <Routes />
-        <button id="refresh" onClick={this.collectBlockchainAndUserInfo.bind(this)}>Refresh Metamask</button>
+        <button id="refresh-metamask" onClick={this.collectBlockchainAndUserInfo.bind(this)}>Refresh Metamask</button>
       </div>
     );
   }
@@ -60,6 +64,9 @@ function mapDispatchToProps(dispatch){
     },
     getAccounts: function (web3){
       return dispatch(fetchAccounts(web3));
+    },
+    checkConfig: function (address){
+      return dispatch(checkAccountConfig(address))
     }
   }
 }

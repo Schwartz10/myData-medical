@@ -16,6 +16,7 @@ const setAccounts = accounts => ({type: GET_ACCOUNTS, accounts})
 /**
  * THUNK CREATORS
  */
+// we make this a promise so we can await its result on the front end
 export const fetchAccounts = web3  =>
     dispatch =>
       new Promise((resolve, reject) =>
