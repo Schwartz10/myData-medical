@@ -12,7 +12,7 @@ const Routes = () =>
           <SideNav />
           <div id='action-container'>
             <Switch>
-              <Route path='/setup' component={Setup} />
+              <Route path='/account' component={Setup} />
               <Route path='/compose' component={Compose} />
               <Route path='/' component={Compose} />
             </Switch>
