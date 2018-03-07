@@ -30,8 +30,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={this.collectBlockchainInfo.bind(this)}>Refresh Metamask</button>
         <Routes />
+        <button id="refresh-metamask" onClick={this.collectBlockchainInfo.bind(this)}>Refresh Metamask</button>
       </div>
     );
   }

@@ -1,0 +1,15 @@
+#side-nav {
+  justify-content: center;
+  background-color: silver;
+  width: 150px;
+  height: 100vh
+}
+
+.side-nav-item {
+  justify-content: center;
+}
+
+.side-nav-icon {
+  font-size: 18px;
+  padding-right: 1em;
+}

@@ -37,5 +37,15 @@ code {
 
 #main-container {
   display: flex;
-  flex-direction: column
+  flex-direction: row
+}
+
+#refresh-metamask {
+  position: fixed;
+  right: 0;
+  top: 0
+}
+
+#action-container {
+  width: 80%
 }

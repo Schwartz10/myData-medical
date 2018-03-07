@@ -1,22 +1,22 @@
 import React from 'react'
 import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
-import DragAndDrop from './DragAndDrop';
-import BottomNav from './BottomNav';
+import Compose from './Compose';
+import SideNav from './SideNav';
 import Setup from './Setup';
 
 const Routes = () =>
   <Router history={history}>
       <div>
-        <span>
-          <h1 id="main-header">Backup your shit!</h1>
-        </span>
         <div id='main-container'>
-          <Switch>
-            <Route path='/setup' component={Setup} />
-            <Route path='/' component={DragAndDrop} />
-          </Switch>
-          <BottomNav />
+          <SideNav />
+          <div id='action-container'>
+            <Switch>
+              <Route path='/setup' component={Setup} />
+              <Route path='/compose' component={Compose} />
+              <Route path='/' component={Compose} />
+            </Switch>
+          </div>
         </div>
       </div>
   </Router>

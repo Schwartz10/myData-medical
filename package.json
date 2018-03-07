@@ -180,6 +180,7 @@
   "dependencies": {
     "babel": "^6.23.0",
     "dotenv": "^2.0.0",
+    "draft-js": "^0.10.5",
     "eth-crypto": "^0.2.0",
     "fs": "0.0.1-security",
     "history": "^4.7.2",
@@ -189,6 +190,7 @@
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-draft-wysiwyg": "^1.12.11",
     "react-dropzone": "^4.2.8",
     "react-icons-kit": "^1.0.7",
     "react-redux": "^5.0.7",
