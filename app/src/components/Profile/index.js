@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Button,
-  FormGroup,
-  InputGroup,
-  FormControl } from 'react-bootstrap'
+import { Button, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { checkAccountConfig } from '../../store/configuredAccount'
 import CreateAccountBtn from './CreateAccountBtn'
+import ImportAccountSubmitBtn from './ImportAccountSubmitBtn'
 import './style.css'
 
 class Profile extends Component {
@@ -15,36 +13,31 @@ class Profile extends Component {
       isImporting: false
     }
     this.handleImport = this.handleImport.bind(this);
+    this.handleImportSubmit = this.handleImportSubmit.bind(this);
   }
   handleImport = e => {
     e.preventDefault();
     this.setState({ isImporting: true })
   }
+  handleImportSubmit = e => {
+    e.preventDefault()
+    console.log(e)
+  }
   render(){
     let { isImporting } = this.state;
     return(
       <div id="account-config-options">
-        <Button
-          className="account-config-option"
-          onClick={this.handleConfigDecision}
-          bsStyle="warning">Import Account
-        </Button>
+          <Button
+            className="account-config-option"
+            onClick={this.handleImport}
+            bsStyle="warning">Import Account
+          </Button>
 
-        { !isImporting ?
-        <CreateAccountBtn />
-        :
-        <FormGroup className="account-config-option">
-          <InputGroup>
-            <FormControl
-              label="private-key"
-              type="password"
-            />
-            <InputGroup.Button>
-              <Button>Import</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-        }
+          { !isImporting ?
+          <CreateAccountBtn />
+          :
+          <ImportAccountSubmitBtn />
+          }
       </div>
     )
   }
