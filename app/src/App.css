@@ -40,10 +40,13 @@ code {
   flex-direction: row
 }
 
-#refresh-metamask {
+#metamask-options {
   position: fixed;
   right: 0;
-  top: 0
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column
 }
 
 #action-container {

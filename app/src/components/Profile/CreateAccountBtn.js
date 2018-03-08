@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import createIdentity from './ipcRendererEvents'
+import { createIdentity } from './ipcRendererEvents'
 import { setNewConfig } from '../../store/configuredAccount'
 
 import './style.css'

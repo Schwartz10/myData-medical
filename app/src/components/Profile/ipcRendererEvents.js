@@ -1,10 +1,17 @@
-function sendToElectron(message, ...args) {
+const rendererEvents = {}
+
+rendererEvents.sendToElectron = function(message, ...args) {
   chrome.ipcRenderer.send(message, ...args);
 }
 
-function createIdentity(e) {
-  e.preventDefault()
-  sendToElectron('create-new-identity')
+rendererEvents.createIdentity = function(e) {
+  e.preventDefault();
+  rendererEvents.sendToElectron('create-new-identity');
 }
 
-export default createIdentity;
+rendererEvents.importIdentity = function(e) {
+  e.preventDefault();
+  rendererEvents.sendToElectron('import-identity', e.target.elements[0].value);
+}
+
+module.exports = rendererEvents;

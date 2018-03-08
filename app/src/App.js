@@ -4,8 +4,9 @@ import { fetchWeb3 } from './store/web3'
 import { fetchContract } from './store/contract'
 import { fetchAccounts } from './store/accounts';
 import { checkAccountConfig } from './store/configuredAccount'
+import { Button } from 'react-bootstrap'
 import Routes from './components/Routes'
-import configuredAccount from './ipcRendererEvents'
+import { configuredAccount, openMetamask } from './ipcRendererEvents'
 
 import './css/pure-min.css'
 import './App.css'
@@ -42,7 +43,10 @@ class App extends Component {
     return (
       <div className="App">
         <Routes />
-        <button id="refresh-metamask" onClick={this.collectBlockchainAndUserInfo.bind(this)}>Refresh Metamask</button>
+        <div id="metamask-options">
+          <Button bsStyle="warning" onClick={openMetamask}>Open Metamask</Button>
+          <Button bsStyle="info" onClick={this.collectBlockchainAndUserInfo.bind(this)}>Refresh Metamask</Button>
+        </div>
       </div>
     );
   }

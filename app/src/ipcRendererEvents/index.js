@@ -1,9 +1,15 @@
-function sendToElectron(message, ...args) {
+const rendererEvents = {}
+
+rendererEvents.sendToElectron = function(message, ...args) {
   chrome.ipcRenderer.send(message, ...args);
 }
 
-function configuredAccount(address) {
-  sendToElectron('check-account-configuration', address)
+rendererEvents.configuredAccount = function(address) {
+  rendererEvents.sendToElectron('check-account-configuration', address);
 }
 
-export default configuredAccount
+rendererEvents.openMetamask = function() {
+  rendererEvents.sendToElectron('open-metamask-popup');
+}
+
+module.exports = rendererEvents

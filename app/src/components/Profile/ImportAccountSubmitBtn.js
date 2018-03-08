@@ -5,20 +5,20 @@ import { Button,
   InputGroup,
   FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import createIdentity from './ipcRendererEvents'
+import { importIdentity } from './ipcRendererEvents'
 import { setNewConfig } from '../../store/configuredAccount'
 
 import './style.css'
 
 const ImportAccountSubmitBtn = (props) => {
-  // chrome.ipcRenderer.once('imported-identity',
-  //   (event, address) => {
-  //     props.createdIdentity(address)
-  // })
+  chrome.ipcRenderer.once('imported-identity',
+    (event, address) => {
+      props.importedIdentity(address)
+  })
   return(
     <Form
       className="account-config-option"
-      onSubmit={props.importIdentity}
+      onSubmit={importIdentity}
     >
       <InputGroup>
         <FormControl
@@ -48,9 +48,8 @@ const mapState = (state) => {
 
 function mapDispatchToProps(dispatch){
   return {
-    importIdentity: function (e){
-      e.preventDefault()
-      return dispatch(setNewConfig(e.target.elements[0].value))
+    importedIdentity: function (address){
+      return dispatch(setNewConfig(address))
     }
   }
 }
