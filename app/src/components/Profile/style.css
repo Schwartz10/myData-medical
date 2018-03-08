@@ -1,0 +1,10 @@
+#account-config-options {
+  display: flex;
+  flex-direction: column
+}
+
+.account-config-option {
+  width: 30%;
+  align-self: center;
+  margin: .25em
+}

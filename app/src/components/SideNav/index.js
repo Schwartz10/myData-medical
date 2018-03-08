@@ -32,7 +32,7 @@ class SideNav extends Component {
           <LinkContainer to="/account" >
             <NavItem eventKey="3" title="Configure" className="side-nav-item">
               <Glyphicon glyph="user" className="side-nav-icon"/>
-              Setup
+              Account
             </NavItem>
           </LinkContainer>
         </Nav>

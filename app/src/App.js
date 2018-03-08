@@ -30,9 +30,11 @@ class App extends Component {
     // if no address, send a 0
     configuredAccount(accounts[0] || '0');
     // listens for an answer from the main process
-    chrome.ipcRenderer.on('checked-account-configuration',
+    chrome.ipcRenderer.once('checked-account-configuration',
       // returns the address if account is configured, otherwise false
-      (event, configured) => this.props.checkConfig(configured))
+      (event, configured) => {
+        this.props.checkConfig(configured)
+      })
   }
 
 

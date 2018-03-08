@@ -3,7 +3,7 @@ import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
 import Compose from './Compose';
 import SideNav from './SideNav';
-import Setup from './Setup';
+import Profile from './Profile';
 
 const Routes = () =>
   <Router history={history}>
@@ -12,7 +12,7 @@ const Routes = () =>
           <SideNav />
           <div id='action-container'>
             <Switch>
-              <Route path='/account' component={Setup} />
+              <Route path='/account' component={Profile} />
               <Route path='/compose' component={Compose} />
               <Route path='/' component={Compose} />
             </Switch>
