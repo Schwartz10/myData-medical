@@ -1,10 +1,23 @@
 #account-config-options {
   display: flex;
-  flex-direction: column
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 20%
 }
 
 .account-config-option {
   width: 30%;
   align-self: center;
   margin: .25em
+}
+
+#profile {
+  display: flex;
+  flex-direction: column
+}
+
+#profile-config-instructions {
+  align-self: center
 }

@@ -18,7 +18,7 @@ const ImportAccountSubmitBtn = (props) => {
   return(
     <Form
       className="account-config-option"
-      onSubmit={props.importedIdentity}
+      onSubmit={props.importIdentity}
     >
       <InputGroup>
         <FormControl
@@ -48,10 +48,9 @@ const mapState = (state) => {
 
 function mapDispatchToProps(dispatch){
   return {
-    importedIdentity: function (e){
+    importIdentity: function (e){
       e.preventDefault()
-      console.log(e.target.elements.privateKey.value)
-      return dispatch(setNewConfig('test'))
+      return dispatch(setNewConfig(e.target.elements[0].value))
     }
   }
 }
