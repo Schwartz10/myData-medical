@@ -20,8 +20,9 @@ const Wallet = require('ethereumjs-wallet')
   ipcMain.on('import-identity', (event, privateKey) => {
     if (privateKey[1] === 'x') privateKey = privateKey.slice(1);
     // turns privateKey into a buffer so the walletjs-eth module can get the public key
-    privateKey = new Buffer(privateKey, 'hex');
-    const wallet = Wallet.fromPrivateKey(privateKey);
+    let privateKeyBuffer = new Buffer(privateKey, 'hex');
+    const wallet = Wallet.fromPrivateKey(privateKeyBuffer);
     const address = '0x' + wallet.getAddress().toString('hex');
+    keytar.setPassword('backup', address, privateKey);
     event.sender.send('imported-identity', address);
   })
