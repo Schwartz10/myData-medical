@@ -5,6 +5,7 @@ import { Button,
   FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { checkAccountConfig } from '../../store/configuredAccount'
+import CreateAccount from './CreateAccount'
 import './style.css'
 
 class Profile extends Component {
@@ -34,11 +35,7 @@ class Profile extends Component {
         </Button>
 
         { !isImporting ?
-        <Button
-          className="account-config-option"
-          onClick={(e) => this.handleConfigDecision(e, 'create')}
-          bsStyle="info">Create New Account
-        </Button>
+        <CreateAccount />
         :
         <FormGroup className="account-config-option">
           <InputGroup>
