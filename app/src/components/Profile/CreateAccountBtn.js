@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import createIdentity from './ipcRendererEvents'
+import { setNewConfig } from '../../store/configuredAccount'
 
 import './style.css'
 
-const CreateAccount = (props) => {
+const CreateAccountBtn = (props) => {
   chrome.ipcRenderer.once('created-new-identity',
-    (event, configured) => {
-      console.log(configured)
+    (event, address) => {
+      props.createdIdentity(address)
   })
   return(
   <Button
@@ -32,12 +33,12 @@ const mapState = (state) => {
 
 function mapDispatchToProps(dispatch){
   return {
-    checkConfig: function (address){
-      return dispatch(checkAccountConfig(address))
+    createdIdentity: function (address){
+      return dispatch(setNewConfig(address))
     }
   }
 }
 
-export default connect(mapState, mapDispatchToProps)(CreateAccount)
+export default connect(mapState, mapDispatchToProps)(CreateAccountBtn)
 
 

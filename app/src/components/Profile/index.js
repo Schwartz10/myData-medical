@@ -5,7 +5,7 @@ import { Button,
   FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { checkAccountConfig } from '../../store/configuredAccount'
-import CreateAccount from './CreateAccount'
+import CreateAccountBtn from './CreateAccountBtn'
 import './style.css'
 
 class Profile extends Component {
@@ -14,15 +14,11 @@ class Profile extends Component {
     this.state = {
       isImporting: false
     }
-    this.handleConfigDecision = this.handleConfigDecision.bind(this);
+    this.handleImport = this.handleImport.bind(this);
   }
-  handleConfigDecision = (e, choice) => {
+  handleImport = e => {
     e.preventDefault();
-    if (choice === 'import') {
-      this.setState({ isImporting: true })
-    } else {
-      // create identity
-    }
+    this.setState({ isImporting: true })
   }
   render(){
     let { isImporting } = this.state;
@@ -30,12 +26,12 @@ class Profile extends Component {
       <div id="account-config-options">
         <Button
           className="account-config-option"
-          onClick={(e) => this.handleConfigDecision(e, 'import')}
+          onClick={this.handleConfigDecision}
           bsStyle="warning">Import Account
         </Button>
 
         { !isImporting ?
-        <CreateAccount />
+        <CreateAccountBtn />
         :
         <FormGroup className="account-config-option">
           <InputGroup>
