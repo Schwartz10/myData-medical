@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button,
   Form,
   FormGroup,
@@ -10,30 +10,40 @@ import { setNewConfig } from '../../store/configuredAccount'
 
 import './style.css'
 
-const ImportAccountSubmitBtn = (props) => {
-  chrome.ipcRenderer.once('imported-identity',
+class ImportAccountSubmitBtn extends Component {
+  componentDidMount(){
+    chrome.ipcRenderer.on('imported-identity',
     (event, address) => {
-      props.importedIdentity(address)
-  })
-  return(
-    <Form
-      className="account-config-option"
-      onSubmit={importIdentity}
-    >
-      <InputGroup>
-        <FormControl
-          label="privateKey"
-          type="password"
-        />
-        <InputGroup.Button>
-          <Button
-            type="submit"
-          >Import
-          </Button>
-        </InputGroup.Button>
-      </InputGroup>
-    </Form>
-  )
+      this.props.importedIdentity(address)
+    })
+  }
+  componentWillUnmount(){
+    chrome.ipcRenderer.removeListener('imported-identity',
+    (event, address) => {
+      this.props.importedIdentity(address)
+    })
+  }
+  render(){
+    return(
+      <Form
+        className="account-config-option"
+        onSubmit={importIdentity}
+      >
+        <InputGroup>
+          <FormControl
+            label="privateKey"
+            type="password"
+          />
+          <InputGroup.Button>
+            <Button
+              type="submit"
+            >Import
+            </Button>
+          </InputGroup.Button>
+        </InputGroup>
+      </Form>
+    )
+  }
 }
 
 /**

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { createIdentity } from './ipcRendererEvents'
@@ -6,19 +6,29 @@ import { setNewConfig } from '../../store/configuredAccount'
 
 import './style.css'
 
-const CreateAccountBtn = (props) => {
-  chrome.ipcRenderer.once('created-new-identity',
+class CreateAccountBtn extends Component {
+  componentDidMount() {
+    chrome.ipcRenderer.on('created-new-identity',
     (event, address) => {
-      props.createdIdentity(address)
-  })
-  return(
-  <Button
-    className="account-config-option"
-    onClick={createIdentity}
-    bsStyle="info">
-  Create New Account
-  </Button>
-  )
+      this.props.createdIdentity(address)
+    })
+  }
+  componentWillUnmount() {
+    chrome.ipcRenderer.removeListener('created-new-identity',
+    (event, address) => {
+      this.props.createdIdentity(address)
+    })
+  }
+  render(){
+    return(
+      <Button
+        className="account-config-option"
+        onClick={createIdentity}
+        bsStyle="info">
+      Create New Account
+      </Button>
+    )
+  }
 }
 
 /**
