@@ -1,10 +1,10 @@
-pragma solidity ^0.4.19;
-import "./Note.sol";
+pragma solidity ^0.4.18;
+import "./NoteCreation.sol";
 /*
 This contract contains helper functions that allows us to collect a patient's notes
 */
 
-contract PatientNotes is Note {
+contract PatientNotes is NoteCreation {
 
   // @dev: getNotesByOwner will return an array of indexes associated with the total notes array
   function getNotesByOwner(address _owner) external view returns(uint[]) {
