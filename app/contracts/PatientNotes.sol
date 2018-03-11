@@ -23,12 +23,14 @@ contract PatientNotes is Note {
   function getNote(uint _noteId) external view returns (
     uint8 age,
     string gender,
-    string encryptedData
+    string encryptedData,
+    address creator
   ) {
     Note storage note = notes[_noteId];
 
     age = note.age;
     gender = note.gender;
     encryptedData = note.encryptedData;
+    creator = note.creator;
   }
 }
