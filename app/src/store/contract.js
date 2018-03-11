@@ -1,4 +1,4 @@
-import SimpleStorageContract from '../../build/contracts/SimpleStorage.json';
+import PatientNotesContract from '../../build/contracts/PatientNotes.json';
 
 /**
  * INITIAL STATE
@@ -20,9 +20,9 @@ const setContract = contract => ({type: GET_CONTRACT, contract})
  */
 export const fetchContract = web3  => {
   const contract = require('truffle-contract');
-  const simpleStorage = contract(SimpleStorageContract);
-  simpleStorage.setProvider(web3.currentProvider)
-  return dispatch => simpleStorage.deployed().then(contract => dispatch(setContract(contract)))
+  const patientNotes = contract(PatientNotesContract);
+  patientNotes.setProvider(web3.currentProvider)
+  return dispatch => patientNotes.deployed().then(contract => dispatch(setContract(contract)))
 }
 
 /**
