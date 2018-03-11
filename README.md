@@ -1,6 +1,6 @@
 ### Description
 
-Store files securely and confidentially on the blockchain
+Sell your medical data to researchers in ERC721 Tokens
 
 More coming soon
 
