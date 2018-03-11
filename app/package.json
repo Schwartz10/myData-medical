@@ -62,7 +62,8 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "semantic-ui-react": "^0.78.3"
+    "semantic-ui-react": "^0.78.3",
+    "zeppelin-solidity": "^1.7.0"
   },
   "scripts": {
     "start": "node scripts/start.js"
