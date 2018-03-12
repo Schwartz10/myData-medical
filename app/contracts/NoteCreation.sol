@@ -1,9 +1,9 @@
 pragma solidity ^0.4.18;
 
-import "../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./Payable.sol";
 import "../node_modules/zeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract NoteCreation is Ownable {
+contract NoteCreation is Payable {
   // @dev using SafeMath for all uints to avoid over/underflow
   using SafeMath for uint256;
 
@@ -21,7 +21,7 @@ contract NoteCreation is Ownable {
   Note[] public notes;
 
   // @dev we can find and update the note's owner // owner's note count on creation and on transfer events
-  mapping (uint => address) noteToOwner;
+  mapping(uint => address) noteToOwner;
   mapping(address => uint) ownerNoteCount;
 
   // @notice we make this function internal because we might want to add extra validations
@@ -32,7 +32,8 @@ contract NoteCreation is Ownable {
     NewNote(id, _age, _gender, msg.sender);
   }
 
-  function createNote(uint8 _age, string _gender, string _encryptedData) public {
+  function createNote(uint8 _age, string _gender, string _encryptedData) external payable {
+    // @user we create a pay what you want structure for medical tokens
     // @notice we can add require statements in the future about the msg.sender to make sure he or she isn't restricted for some reason here
     _createNote(_age, _gender, _encryptedData);
   }
