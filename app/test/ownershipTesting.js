@@ -67,4 +67,14 @@ contract('NoteOwnership', function(accounts) {
     const isNotApproved = await noteOwnershipInstance.isApproved.call(1);
     assert.equal(isNotApproved, false, "token was not approved correctly");
   })
+
+  // this test DOES NOT properly test the takeOwnership function because we (as far as I have researched) have no way of approving a token for someone other than accounts[0]. We do however, still see the event logged and it appears as though all is working properly
+  it("should properly transfer ownership when an approved address takes it, and clear the Approval for the token",
+  async () => {
+    await noteOwnershipInstance.takeOwnership(2);
+    const tokenOwner = await noteOwnershipInstance.ownerOf.call(2);
+    assert.equal(tokenOwner, accounts[0], "token did not transfer properly");
+    const isApproved = await noteOwnershipInstance.isApproved.call(2);
+    assert.equal(isApproved, false, "token's approval was not cleared");
+  })
 });
