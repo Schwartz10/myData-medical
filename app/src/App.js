@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
 import { fetchWeb3 } from './store/web3'
 import { fetchContract } from './store/contract'
-import { fetchAccounts } from './store/accounts';
+import { fetchAccounts } from './store/accounts'
 import { checkAccountConfig } from './store/configuredAccount'
 import { Button } from 'react-bootstrap'
 import Routes from './components/Routes'
@@ -12,7 +13,7 @@ import './css/pure-min.css'
 import './App.css'
 
 class App extends Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.collectBlockchainAndUserInfo = this.collectBlockchainAndUserInfo.bind(this);
   }
@@ -51,6 +52,10 @@ class App extends Component {
     );
   }
 }
+
+App.contextTypes = {
+  web3: PropTypes.object
+};
 
 function mapStateToProps(state){
   return {
