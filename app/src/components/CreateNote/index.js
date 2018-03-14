@@ -18,8 +18,6 @@ class CreateNote extends Component {
   handleChange = (e, field) => {
     let newStateProp = {};
     newStateProp[field] = e.target.value;
-    console.log('CHANGE', e.target.value)
-    console.log('state', this.state)
     this.setState(newStateProp);
   }
 
