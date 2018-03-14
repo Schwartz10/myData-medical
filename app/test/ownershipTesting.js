@@ -8,6 +8,7 @@ contract('NoteOwnership', function(accounts) {
     await noteOwnershipInstance.createNote(54, "female", "DATA2", {from: accounts[0]})
     await noteOwnershipInstance.createNote(4, "male", "DATA5", {from: accounts[0]})
     await noteOwnershipInstance.createNote(4, "female","DATA1", {from: accounts[1]})
+    await noteOwnershipInstance.createNote(100, "female","DATA100", {from: accounts[2]})
   })
 
   xit("should get the total notes by owner", async () => {
@@ -49,13 +50,11 @@ contract('NoteOwnership', function(accounts) {
     assert.notEqual(tokenOwner, accounts[0], "token did not transfer properly");
   })
 
-
   it("should revert transactions that violate the onlyOwnerOf modifier", async () => {
     await noteOwnershipInstance.transfer(accounts[1], 0, {from: accounts[1]})
     const tokenOwner = await noteOwnershipInstance.ownerOf.call(0);
     assert.equal(tokenOwner, accounts[0], "token transferred when it shouldn't have");
   })
-
 
   xit("should properly approve tokens", async () => {
     await noteOwnershipInstance.approve(accounts[0], 2);
@@ -65,7 +64,6 @@ contract('NoteOwnership', function(accounts) {
     assert.equal(isNotApproved, false, "token was not approved correctly");
   })
 
-  // this test DOES NOT properly test the takeOwnership function because we (as far as I have researched) have no way of approving a token for someone other than accounts[0]. We do however, still see the event logged and it appears as though all is working properly
   xit("should properly transfer ownership when an approved address takes it, and clear the Approval for the token",
   async () => {
     await noteOwnershipInstance.takeOwnership(2);
@@ -73,5 +71,17 @@ contract('NoteOwnership', function(accounts) {
     assert.equal(tokenOwner, accounts[0], "token should not have transferred");
     const isApproved = await noteOwnershipInstance.isApproved.call(2);
     assert.equal(isApproved, false, "token's approval was not cleared");
+  })
+
+  it("should not allow people to approve tokens they don't own", async () => {
+    await noteOwnershipInstance.approve(accounts[0], 4);
+    const isApproved = await noteOwnershipInstance.isApproved.call(4);
+    assert.equal(isApproved, false, "token should not have transferred");
+  })
+
+  it("should not allow people to take ownership of tokens they aren't approved for", async () => {
+    await noteOwnershipInstance.takeOwnership(4);
+    const tokenOwner = await noteOwnershipInstance.ownerOf.call(4);
+    assert.equal(tokenOwner, accounts[2], "token should not have transferred");
   })
 });

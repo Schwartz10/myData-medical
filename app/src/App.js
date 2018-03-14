@@ -14,7 +14,7 @@ import './App.css'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.collectBlockchainAndUserInfo = this.collectBlockchainAndUserInfo.bind(this)
+    this.collectBlockchainAndUserInfo = this.collectBlockchainAndUserInfo.bind(this);
   }
 
   componentWillMount() {
@@ -22,11 +22,11 @@ class App extends Component {
   }
 
   async collectBlockchainAndUserInfo(e) {
-    if (e) e.preventDefault()
+    if (e) e.preventDefault();
     // Get network provider, web3, and truffle contract instance and store them on state.
-    const { web3 } = await this.props.getWeb3()
-    this.props.getContract(web3)
-    const { accounts } = await this.props.getAccounts(web3)
+    const { web3 } = await this.props.getWeb3();
+    this.props.getContract(web3);
+    const { accounts } = await this.props.getAccounts(web3);
     // checks with the main process to make sure the current addressed logged in to metamask has an identity set up
     // if no address, send a 0
     configuredAccount(accounts[0] || '0');
@@ -34,7 +34,7 @@ class App extends Component {
     chrome.ipcRenderer.once('checked-account-configuration',
       // returns the address if account is configured, otherwise false
       (event, configured) => {
-        this.props.checkConfig(configured)
+        this.props.checkConfig(configured);
       })
   }
 
