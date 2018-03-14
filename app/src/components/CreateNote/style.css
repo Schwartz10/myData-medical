@@ -1,0 +1,23 @@
+.input-group-addon {
+  background-color: white
+}
+
+#note-creation-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: .5em;
+  align-items: left;
+  margin-top: .25em
+}
+
+#medical-notes-input-field {
+  width: 75%;
+  height: 35em;
+  margin-top: .25em;
+  margin-bottom: .25em
+}
+
+.note-metadata-input {
+  margin-left: .1em;
+  margin-right: .1em
+}

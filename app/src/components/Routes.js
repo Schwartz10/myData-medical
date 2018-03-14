@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
-import Compose from './Compose';
+import CreateNote from './CreateNote';
 import SideNav from './SideNav';
 import Profile from './Profile';
 
@@ -13,8 +13,8 @@ const Routes = () =>
           <div id='action-container'>
             <Switch>
               <Route path='/account' component={Profile} />
-              <Route path='/compose' component={Compose} />
-              <Route path='/' component={Compose} />
+              <Route path='/create-note' component={CreateNote} />
+              <Route path='/' component={CreateNote} />
             </Switch>
           </div>
         </div>

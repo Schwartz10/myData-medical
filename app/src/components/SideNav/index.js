@@ -15,17 +15,17 @@ class SideNav extends Component {
     return(
       <div id="side-nav">
         <Nav bsStyle="pills" stacked activeKey={this.state.selectedKey} onSelect={this.handleSelect.bind(this)}>
-          <LinkContainer to="/inbox" >
-            <NavItem eventKey="1" title="Configure" className="side-nav-item">
+          <LinkContainer to="/exchange" >
+            <NavItem eventKey="1" title="exchange" className="side-nav-item">
               <Glyphicon glyph="inbox" className="side-nav-icon"/>
-              Inbox
+              Exchange
             </NavItem>
           </LinkContainer>
 
-          <LinkContainer to="/compose" >
-            <NavItem eventKey="2" title="Store" className="side-nav-item">
+          <LinkContainer to="/create-note" >
+            <NavItem eventKey="2" title="create-note" className="side-nav-item">
               <Glyphicon glyph="pencil" className="side-nav-icon"/>
-              Compose
+              Create Note
             </NavItem>
           </LinkContainer>
 
