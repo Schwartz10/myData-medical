@@ -3,8 +3,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs');
 
-const extensions = require('./main-processes/extensions');
-const authenticationListeners = require('./main-processes/authentication')
+const { extensions, authenticationListeners, cryptographyListeners } = require('./main-processes');
 
 let isDev;
 try {

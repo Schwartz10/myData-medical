@@ -20,7 +20,11 @@ class CreateNote extends Component {
     newStateProp[field] = e.target.value;
     this.setState(newStateProp);
   }
-
+  handleClick = (e, func) => {
+    e.preventDefault();
+    // call the func with the configured account and the input data
+    func(this.props.configuredAccount, JSON.stringify(this.state));
+  }
   render() {
     return (
       <div id="note-creation-container">
@@ -63,7 +67,7 @@ class CreateNote extends Component {
           onChange={(e) => this.handleChange(e, 'medicalNotes')}
         />
 
-        <CreateToken />
+        <CreateToken onClick={this.handleClick}/>
 
       </div>
     );
@@ -77,6 +81,7 @@ const mapState = (state) => {
   return {
     contract: state.contract,
     accounts: state.accounts,
+    configuredAccount: state.configuredAccount
   }
 }
 
