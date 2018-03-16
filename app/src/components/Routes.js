@@ -1,9 +1,7 @@
 import React from 'react'
 import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
-import CreateNote from './CreateNote';
-import SideNav from './SideNav';
-import Profile from './Profile';
+import { Profile, SideNav, CreateNote, TokenList } from './';
 
 const Routes = () =>
   <Router history={history}>
@@ -14,6 +12,7 @@ const Routes = () =>
             <Switch>
               <Route path='/account' component={Profile} />
               <Route path='/create-note' component={CreateNote} />
+              <Route path='/my-token-list' component={TokenList} />
               <Route path='/' component={CreateNote} />
             </Switch>
           </div>

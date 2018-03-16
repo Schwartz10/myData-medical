@@ -1,8 +1,8 @@
 {
-  "name": "project-backup",
-  "productName": "project-backup",
+  "name": "CryptoNotes",
+  "productName": "CryptoNotes",
   "version": "0.0.1",
-  "description": "Easily create a desktop version of your dApp using Electron (Muon) + MetaMask.",
+  "description": "Sell your non fungible medical data tokens to researchers",
   "main": "main.js",
   "license": "Apache-2.0",
   "author": {

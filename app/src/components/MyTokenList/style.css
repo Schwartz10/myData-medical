@@ -1,0 +1,11 @@
+#my-token-list-page-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: .5em;
+  align-items: left;
+  margin-top: .25em
+}
+
+#token-list-container {
+  width: 90%;
+}

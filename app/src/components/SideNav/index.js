@@ -29,8 +29,15 @@ class SideNav extends Component {
             </NavItem>
           </LinkContainer>
 
+          <LinkContainer to="/my-token-list" >
+            <NavItem eventKey="3" title="my-token-list" className="side-nav-item">
+              <Glyphicon glyph="record" className="side-nav-icon"/>
+              My Tokens
+            </NavItem>
+          </LinkContainer>
+
           <LinkContainer to="/account" >
-            <NavItem eventKey="3" title="Configure" className="side-nav-item">
+            <NavItem eventKey="4" title="Configure" className="side-nav-item">
               <Glyphicon glyph="user" className="side-nav-icon"/>
               Account
             </NavItem>

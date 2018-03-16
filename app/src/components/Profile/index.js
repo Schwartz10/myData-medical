@@ -10,8 +10,8 @@ const Profile = () =>
       {/*
         Later we'll add in functionality to allow a user to create an ethereum address, but for now it's out of scope
         <CreateAccountBtn />
+        <h5>or</h5>
       */}
-      <h5>or</h5>
       <ImportAccountSubmitBtn />
     </div>
   </div>

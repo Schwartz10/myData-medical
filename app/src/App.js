@@ -5,6 +5,7 @@ import { fetchWeb3 } from './store/web3'
 import { fetchContract } from './store/contract'
 import { fetchAccounts } from './store/accounts'
 import { checkAccountConfig } from './store/configuredAccount'
+import { updateTokenList } from './store/myTokens'
 import { Button } from 'react-bootstrap'
 import Routes from './components/Routes'
 import { configuredAccount, openMetamask } from './ipcRendererEvents'
@@ -24,10 +25,22 @@ class App extends Component {
 
   async collectBlockchainAndUserInfo(e) {
     if (e) e.preventDefault();
-    // Get network provider, web3, and truffle contract instance and store them on state.
+    // Get network provider, web3, and truffle contract instance and store them on redux store
     const { web3 } = await this.props.getWeb3();
-    this.props.getContract(web3);
-    const { accounts } = await this.props.getAccounts(web3);
+    const [{ contract }, { accounts }] = await Promise.all([this.props.getContract(web3), this.props.getAccounts(web3)]);
+
+    // Get the current tokens owned by user, sets them on redux store
+    let tokenIdList;
+    let tokens = [];
+
+    if(accounts.length){
+      tokenIdList = await contract.getNotesByOwner.call(accounts[0]);
+      tokens =
+        await Promise.all(tokenIdList.map(tokenId => contract.getNote.call(tokenId)));
+    }
+
+    this.props.setTokenList(tokens);
+
     // checks with the main process to make sure the current addressed logged in to metamask has an identity set up
     // if no address, send a 0
     configuredAccount(accounts[0] || '0');
@@ -53,10 +66,6 @@ class App extends Component {
   }
 }
 
-App.contextTypes = {
-  web3: PropTypes.object
-};
-
 function mapStateToProps(state){
   return {
     web3: state.web3,
@@ -78,6 +87,9 @@ function mapDispatchToProps(dispatch){
     },
     checkConfig: function (address){
       return dispatch(checkAccountConfig(address))
+    },
+    setTokenList: function (tokens){
+      return dispatch(updateTokenList(tokens))
     }
   }
 }
