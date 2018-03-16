@@ -13,12 +13,12 @@ class CreateToken extends Component {
   }
   encryptAndCreate = async (event, publicKey, data) => {
     // note we're not doing anything with name yet, but we will...
-    const { name, age, gender, medicalNotes } = parseOutboundTokenData(data)
+    const { metadata, age, gender, medicalNotes } = parseOutboundTokenData(data)
     // encrypt the medical data
     let encrypted = await encryptWithPublicKey(publicKey, medicalNotes);
     encrypted = JSON.stringify(encrypted);
     // create note with public facing vars and the medical data
-    this.props.contract.createNote(age, gender, encrypted, {from: this.props.configuredAccount});
+    this.props.contract.createNote(age, metadata, gender, encrypted, {from: this.props.configuredAccount});
     // popup the metamask notification so the transaction can get approved
     openMetamaskNotification()
   }

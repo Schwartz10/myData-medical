@@ -30,15 +30,11 @@ class App extends Component {
     const [{ contract }, { accounts }] = await Promise.all([this.props.getContract(web3), this.props.getAccounts(web3)]);
 
     // Get the current tokens owned by user, sets them on redux store
-    let tokenIdList;
     let tokens = [];
-
     if(accounts.length){
-      tokenIdList = await contract.getNotesByOwner.call(accounts[0]);
-      tokens =
-        await Promise.all(tokenIdList.map(tokenId => contract.getNote.call(tokenId)));
+      const tokenIdList = await contract.getNotesByOwner.call(accounts[0]);
+      tokens = await Promise.all(tokenIdList.map(tokenId => contract.getNote.call(tokenId)));
     }
-
     this.props.setTokenList(tokens);
 
     // checks with the main process to make sure the current addressed logged in to metamask has an identity set up

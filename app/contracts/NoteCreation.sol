@@ -7,11 +7,12 @@ contract NoteCreation is Payable {
   // @dev using SafeMath for all uints to avoid over/underflow
   using SafeMath for uint256;
 
-  event NewNote(uint256 noteId, uint8 age, string gender, address creator);
+  event NewNote(uint256 noteId, uint8 age, string metaData, string gender, string encryptedData,address creator);
 
   // @param a note represents medical data for each patient - eventually patients will be able to publicize and privatize certain aspects of their data
   struct Note {
     uint8 age;
+    string metaData;
     string gender;
     string encryptedData;
     address creator;
@@ -25,16 +26,16 @@ contract NoteCreation is Payable {
   mapping(address => uint) ownerNoteCount;
 
   // @notice we make this function internal because we might want to add extra validations
-  function _createNote(uint8 _age, string _gender, string _encryptedData) internal {
-    uint id = notes.push(Note(_age, _gender, _encryptedData, msg.sender)) - 1;
+  function _createNote(uint8 _age, string _metaData, string _gender, string _encryptedData) internal {
+    uint id = notes.push(Note(_age, _metaData, _gender, _encryptedData, msg.sender)) - 1;
     noteToOwner[id] = msg.sender;
     ownerNoteCount[msg.sender] = ownerNoteCount[msg.sender].add(1);
-    NewNote(id, _age, _gender, msg.sender);
+    NewNote(id, _age, _metaData, _gender, _encryptedData, msg.sender);
   }
 
-  function createNote(uint8 _age, string _gender, string _encryptedData) external payable {
+  function createNote(uint8 _age, string _metaData, string _gender, string _encryptedData) external payable {
     // @user we create a pay what you want structure for medical tokens
     // @notice we can add require statements in the future about the msg.sender to make sure he or she isn't restricted for some reason here
-    _createNote(_age, _gender, _encryptedData);
+    _createNote(_age, _metaData, _gender, _encryptedData);
   }
 }

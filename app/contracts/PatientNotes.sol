@@ -22,6 +22,7 @@ contract PatientNotes is NoteCreation {
   //@dev makes the frontend work a little simpler to use the array returned from getNotesByOwner
   function getNote(uint _noteId) external view returns (
     uint8 age,
+    string metaData,
     string gender,
     string encryptedData,
     address creator
@@ -29,6 +30,7 @@ contract PatientNotes is NoteCreation {
     Note storage note = notes[_noteId];
 
     age = note.age;
+    metaData = note.metaData;
     gender = note.gender;
     encryptedData = note.encryptedData;
     creator = note.creator;

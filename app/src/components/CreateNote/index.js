@@ -9,7 +9,7 @@ class CreateNote extends Component {
   constructor() {
     super()
     this.state = {
-      name: "",
+      metadata: "",
       gender: "",
       age: "21",
       medicalNotes: ""
@@ -33,8 +33,8 @@ class CreateNote extends Component {
         <Form inline>
 
           <FormGroup>
-            <ControlLabel className="note-metadata-input">Patient Name</ControlLabel>{' '}
-            <FormControl onChange={(e) => this.handleChange(e, 'name')} type="text" placeholder="Patient name" />
+            <ControlLabel className="note-metadata-input">Note Metadata</ControlLabel>{' '}
+            <FormControl onChange={(e) => this.handleChange(e, 'metadata')} type="text" placeholder="Note Metadata" />
           </FormGroup>{' '}
 
           <FormGroup>
