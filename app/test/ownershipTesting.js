@@ -26,7 +26,7 @@ contract('NoteOwnership', function(accounts) {
     assert.equal(storedFourthAccountData.length, 0, "Wrong number of notes per fourth account");
   })
 
-  xit("should get the correct note data given a tokenId", async () => {
+  it("should get the correct note data given a tokenId", async () => {
     let note = await noteOwnershipInstance.getNote.call(0);
     // expects age to come back as a big number object, converts it to a number
     note[0] = note[0].c[0];

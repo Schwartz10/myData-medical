@@ -7,7 +7,7 @@ const SingleToken = props =>
     <Panel id="collapsible-panel-example-2" defaultExpanded>
       <Panel.Heading>
         <Panel.Title toggle>
-          {props.token}
+          {props.token.metaData}
         </Panel.Title>
       </Panel.Heading>
       <Panel.Collapse>

@@ -7,7 +7,7 @@ contract NoteCreation is Payable {
   // @dev using SafeMath for all uints to avoid over/underflow
   using SafeMath for uint256;
 
-  event NewNote(uint256 noteId, uint8 age, string metaData, string gender, string encryptedData,address creator);
+  event NewNote(uint256 noteId, uint8 age, string metaData, string gender, string encryptedData, address creator);
 
   // @param a note represents medical data for each patient - eventually patients will be able to publicize and privatize certain aspects of their data
   struct Note {
