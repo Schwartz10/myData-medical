@@ -35,7 +35,6 @@ class App extends Component {
       const tokenIdList = await contract.getNotesByOwner.call(accounts[0]);
       tokens = await Promise.all(tokenIdList.map(tokenId => contract.getNote.call(tokenId)));
     }
-    console.log(tokens)
     this.props.setTokenList(tokens);
 
     // checks with the main process to make sure the current addressed logged in to metamask has an identity set up

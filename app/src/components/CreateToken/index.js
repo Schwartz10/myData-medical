@@ -8,15 +8,14 @@ import { parseOutboundTokenData } from './utils'
 import './style.css'
 
 class CreateToken extends Component {
-  getPublicKey = (configuredAccount, data) => {
-    fetchPublicKey(configuredAccount, data);
+  getPublicKey = (data) => {
+    fetchPublicKey(this.props.configuredAccount, data);
   }
   encryptAndCreate = async (event, publicKey, data) => {
     const { metadata, age, gender, medicalNotes } = parseOutboundTokenData(data);
     // encrypt the medical data
     let encrypted = await encryptWithPublicKey(publicKey, medicalNotes);
     encrypted = JSON.stringify(encrypted);
-    console.log('ENCRYPTED!', encrypted)
     // create note with public facing vars and the medical data
     this.props.contract.createNote(age, metadata, gender, encrypted, {from: this.props.configuredAccount});
     // popup the metamask notification so the transaction can get approved
@@ -28,7 +27,7 @@ class CreateToken extends Component {
   }
   componentWillUnmount(){
     // unsubscribe
-    chrome.ipcRenderer.removeListener('got-public-key', this.encryptAndCreate.bind(this));
+    chrome.ipcRenderer.removeAllListeners('got-public-key');
   }
   render(){
     return(

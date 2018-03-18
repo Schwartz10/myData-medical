@@ -22,8 +22,8 @@ class CreateNote extends Component {
   }
   handleClick = (e, func) => {
     e.preventDefault();
-    // call the func with the configured account and the input data
-    func(this.props.configuredAccount, JSON.stringify(this.state));
+    // call the func with the input data
+    func(JSON.stringify(this.state));
   }
   render() {
     return (
