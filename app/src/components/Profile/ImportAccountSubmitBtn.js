@@ -18,10 +18,7 @@ class ImportAccountSubmitBtn extends Component {
     })
   }
   componentWillUnmount(){
-    chrome.ipcRenderer.removeListener('imported-identity',
-    (event, address) => {
-      this.props.importedIdentity(address)
-    })
+    chrome.ipcRenderer.removeAllListeners('imported-identity')
   }
   render(){
     return(

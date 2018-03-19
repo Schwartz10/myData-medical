@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { checkAccountConfig } from '../../store/configuredAccount'
+import { addToken } from '../../store/myTokens'
 import { fetchPublicKey, openMetamaskNotification } from './ipcRendererEvents'
 import { encryptWithPublicKey } from 'eth-crypto';
 import { parseOutboundTokenData } from './utils'
@@ -17,9 +18,13 @@ class CreateToken extends Component {
     let encrypted = await encryptWithPublicKey(publicKey, medicalNotes);
     encrypted = JSON.stringify(encrypted);
     // create note with public facing vars and the medical data
-    this.props.contract.createNote(age, metadata, gender, encrypted, {from: this.props.configuredAccount});
+    const create = this.props.contract.createNote(age, metadata, gender, encrypted, {from: this.props.configuredAccount});
     // popup the metamask notification so the transaction can get approved
     openMetamaskNotification();
+
+    // update the redux store with the receipt from the blockchain
+    create.then(res => this.props.addToTokenList(res.logs[0].args))
+    .catch(err => console.log(err));
   }
   componentDidMount(){
     // listener
@@ -58,7 +63,10 @@ const mapState = (state) => {
 function mapDispatchToProps(dispatch){
   return {
     checkConfig: function (address){
-      return dispatch(checkAccountConfig(address))
+      return dispatch(checkAccountConfig(address));
+    },
+    addToTokenList: function(tokenObj){
+      return dispatch(addToken(tokenObj));
     }
   }
 }

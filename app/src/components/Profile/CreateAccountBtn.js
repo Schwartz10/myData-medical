@@ -14,10 +14,7 @@ class CreateAccountBtn extends Component {
     })
   }
   componentWillUnmount() {
-    chrome.ipcRenderer.removeListener('created-new-identity',
-    (event, address) => {
-      this.props.createdIdentity(address)
-    })
+    chrome.ipcRenderer.removeAllListeners('created-new-identity')
   }
   render(){
     return(
