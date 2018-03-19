@@ -32,8 +32,8 @@ export default function (state = defaultTokenList, action) {
     case GET_TOKENS:
       return action.tokens;
     case CREATED_TOKEN:
-      const { age, metaData, gender, encryptedData, creator } = action.token;
-      const newToken = [age, metaData, gender, encryptedData, creator];
+      const { noteId, age, metaData, gender, encryptedData, creator } = action.token;
+      const newToken = [noteId, age, metaData, gender, encryptedData, creator];
       return [...state, newToken];
     default:
       return state
