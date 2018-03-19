@@ -30,7 +30,8 @@ contract('NoteOwnership', function(accounts) {
     let note = await noteOwnershipInstance.getNote.call(0);
     // expects age to come back as a big number object, converts it to a number
     note[0] = note[0].c[0];
-    let expected = [ 8, "metaData1", "male","DATA",accounts[0] ];
+    note[1] = note[1].c[0];
+    let expected = [ 8, 0, "metaData1", "male","DATA",accounts[0] ];
     assert.deepEqual(note, expected, "wrong note");
   })
 

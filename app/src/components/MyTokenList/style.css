@@ -9,3 +9,12 @@
 #token-list-container {
   width: 90%;
 }
+
+#panel-title-container {
+  display: flex;
+  justify-content: space-between
+}
+
+#panel-title {
+  align-self: center
+}

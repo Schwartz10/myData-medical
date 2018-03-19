@@ -39,10 +39,7 @@ class CreateToken extends Component {
       <div>
         <Button
           onClick={(e) => this.props.onClick(e, this.getPublicKey)}
-          disabled={
-            false
-            /*disabled={!configuredAccount}*/
-          }
+          disabled={!this.props.configuredAccount}
           bsStyle="primary">Create Token
         </Button>
       </div>
