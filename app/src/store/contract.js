@@ -13,16 +13,16 @@ const GET_CONTRACT = 'GET_CONTRACT';
 /**
  * ACTION CREATORS
  */
-const setContract = contract => ({type: GET_CONTRACT, contract})
+const setContract = contract => ({type: GET_CONTRACT, contract});
 
 /**
  * THUNK CREATORS
  */
-export const fetchContract = web3  => {
+export const fetchContract = web3 => {
   const contract = require('truffle-contract');
   const noteOwnership = contract(NoteOwnershipContract);
-  noteOwnership.setProvider(web3.currentProvider)
-  return dispatch => noteOwnership.deployed().then(contract => dispatch(setContract(contract)))
+  noteOwnership.setProvider(web3.currentProvider);
+  return dispatch => noteOwnership.deployed().then(contract => dispatch(setContract(contract)));
 }
 
 /**
