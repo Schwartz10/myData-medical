@@ -2,7 +2,7 @@
 
 Sell your medical data to researchers in ERC721 Tokens
 
-More coming soon
+The model here is to wrap encrypted data with ERC721 tokens - this model can be expanded and used in many other applications..
 
 ### Setup
 
