@@ -15,14 +15,11 @@ import './App.css'
 class App extends Component {
   constructor(props, context) {
     super(props);
-    this.collectBlockchainAndUserInfo = this.collectBlockchainAndUserInfo.bind(this);
   }
 
-  componentWillMount() {
-    this.collectBlockchainAndUserInfo();
-  }
+  componentWillMount = () => this.collectBlockchainAndUserInfo();
 
-  async collectBlockchainAndUserInfo(e) {
+  collectBlockchainAndUserInfo = async e => {
     if (e) e.preventDefault();
     // Get network provider, web3, and truffle contract instance and store them on redux store
     const { web3 } = await this.props.getWeb3();
@@ -54,7 +51,7 @@ class App extends Component {
         <Routes />
         <div id="metamask-options">
           <Button bsStyle="warning" onClick={openMetamask}>Open Metamask</Button>
-          <Button bsStyle="info" onClick={this.collectBlockchainAndUserInfo.bind(this)}>Refresh Metamask</Button>
+          <Button bsStyle="info" onClick={this.collectBlockchainAndUserInfo}>Refresh Metamask</Button>
         </div>
       </div>
     );
@@ -71,21 +68,11 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    getWeb3: function (){
-      return dispatch(fetchWeb3());
-    },
-    getContract: function (web3){
-      return dispatch(fetchContract(web3));
-    },
-    getAccounts: function (web3){
-      return dispatch(fetchAccounts(web3));
-    },
-    checkConfig: function (address){
-      return dispatch(checkAccountConfig(address))
-    },
-    setTokenList: function (tokens){
-      return dispatch(updateTokenList(tokens))
-    }
+    getWeb3: () => dispatch(fetchWeb3()),
+    getContract: web3 => dispatch(fetchContract(web3)),
+    getAccounts: web3 => dispatch(fetchAccounts(web3)),
+    checkConfig: address => dispatch(checkAccountConfig(address)),
+    setTokenList: tokens => dispatch(updateTokenList(tokens))
   }
 }
 
